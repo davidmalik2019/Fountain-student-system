@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>FIS,BWARI,NIGERIA</title>
+<link rel="icon" href="images/fis.png" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="images/fis.png">FIS</a>
+  
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+		<div class="min-h-full">
+		    <nav class="bg-gray-800">
+		        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		            <div class="flex h-16 items-center justify-between">
+		                <div class="flex items-center">
+							
+		<div class="hidden md:block">
+			<div class="ml-10 flex items-baseline space-x-4">
+										 <a th:href="dashboard" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Dashboard</a>
+										<a th:href="registration" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Registration</a>
+			                          <a th:href="courses" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Courses</a>
+			                           <a th:href="teachers" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Instructors</a>
+			                            <a th:href="java" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Java</a>
+										<a th:href="phpinfo" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Php</a>
+		                   </div>
+						    </div>
+							</div>
+							</div>
+							     </div>
+							
+    </ul>
+  </div>
+</nav>
+
+	<div class ="container">
+		<div class = "row">
+			<h1> List of Available Courses </h1>
+		</div>
+		
+		<div class = "row">
+			<div class = "col-lg-3">
+				<a th:href = "@{/courses/new}" class = "btn btn-primary btn-sm mb-3"> Add Course</a>
+				<a th:href = "@{/jasperpdf/course/export}" class = "btn btn-danger btn-sm mb-3"> PDF</a>
+			</div>
+		</div>
+   <table class = "table table-striped table-bordered">
+			<thead class = "table-dark">
+				<tr>
+					<th>  ID</th>
+					<th>  Course_Code</th>
+					<th>  Course_Name</th>
+					<th>  Amount </th>
+					<th> Duration</th>
+					<th> Actions </th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each = "course: ${courses}">
+					<td th:text = "${course.id}"></td>
+					<td th:text = "${course.courseCode}"></td>
+					<td th:text = "${course.courseName}"></td>
+					<td th:text = "${course.amount}"></td>
+					<td th:text = "${course.duration}"></td>
+					<td>
+						<a th:href = "@{/courses/edit/{id}(id=${course.id})}"
+						 class = "btn btn-primary">Update</a>
+						
+						<a th:href = "@{/courses/{id}(id=${course.id})}"
+						 class = "btn btn-danger">Delete</a>
+						 
+					</td>
+				</tr>
+			</tbody>
+		
+		</table>
+		
+	</div>
+</body>
+</html>
